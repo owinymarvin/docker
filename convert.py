@@ -1,10 +1,14 @@
 import tensorflow as tf
-from tensorflow.keras.models import load_model
+import pickle
 
 # Load the Keras model
-model = load_model('model.h5')
+model = tf.keras.models.load_model('model.h5')
 
 # Convert the Keras model to a TensorFlow SavedModel
 tf.saved_model.save(model, 'saved_model')
 
-print("Model successfully converted to TensorFlow SavedModel.")
+# Serialize the SavedModel using pickle
+with open('model.pkl', 'wb') as f:
+    pickle.dump('saved_model', f)
+
+print("Model successfully converted to pickle file.")
