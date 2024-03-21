@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
+from keras.models import load_model
 from keras.preprocessing import image
 import numpy as np
-import tensorflow as tf
 
 app = Flask(__name__)
 
@@ -9,8 +9,15 @@ class_names = ['agricultural', 'airplane', 'baseballdiamond', 'beach', 'building
 
 dic = {i: class_name for i, class_name in enumerate(class_names)}
 
-# Load the TensorFlow SavedModel
-model = tf.saved_model.load('saved_model')
+# Load the Keras model outside the function
+model = None
+
+def load_keras_model():
+    global model
+    model = load_model('model.h5')
+
+# Ensure the model is loaded when the application starts
+load_keras_model()
 
 def predict_label(img_path):
     try:
@@ -19,7 +26,7 @@ def predict_label(img_path):
         img = img.reshape(1, 250, 250, 3)
         
         # Get the model's prediction probabilities
-        probabilities = model(img)
+        probabilities = model.predict(img)
         
         # Get the index of the class with the highest probability
         predicted_class_index = np.argmax(probabilities)
