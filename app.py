@@ -9,7 +9,7 @@ class_names = ['agricultural', 'airplane', 'baseballdiamond', 'beach', 'building
 
 dic = {i: class_name for i, class_name in enumerate(class_names)}
 
-model = load_model('Landuseclassmodel.h5')
+model = load_model('model.h5')
 
 def predict_label(img_path):
     try:
