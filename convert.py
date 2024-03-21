@@ -12,3 +12,4 @@ with open('model.pkl', 'wb') as f:
     pickle.dump('saved_model', f)
 
 print("Model successfully converted to pickle file.")
+print('deploy')
