@@ -8,9 +8,11 @@ WORKDIR /app
 COPY requirements.txt .
 
 # Install any dependencies specified in requirements.txt
-RUN pip install --no-cache-dir tensorflow==2.7.0
+RUN pip install --no-cache-dir tensorflow
 RUN pip install --no-cache-dir flask
 RUN pip install --no-cache-dir pillow
+RUN pip install --no-cache-dir -r requirements.txt
+
 
 
 # RUN pip install --no-cache-dir -r requirements.txt
