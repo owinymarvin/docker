@@ -1,5 +1,5 @@
-python==3.10.12
-Flask==3.0.2
 numpy==1.26.4
 pillow==10.2.0
 tensorflow==2.11.0
+python>=3.10.12,<3.11
+Flask
